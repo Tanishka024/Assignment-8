@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0px;
+        font-family: "Ubuntu";
+      }
+      body {
+        overflow: hidden;
+        background-color: #1f293a;
+      }
+      .container {
+        border: 1px solid black;
+        display: flex;
+        align-items: center;
+        height: 95vh;
+        justify-content: center;
+        flex-direction: column;
+        background-color: #1f293a;
+        border: 1px solid aqua;
+        margin: 20px;
+        box-shadow: 1px 1px 20px rgb(0, 255, 255);
+      }
+
+      label {
+        font-size: 0.8em;
+        position: relative;
+        top: 2%;
+        left: -50px;
+        color: rgb(47, 188, 188);
+        background-color: #1f293a;
+        padding: 0 6px;
+      }
+      input {
+        padding: 1.5vh 5vh;
+        margin: 1vh;
+        border-radius: 5vh;
+        border: 2px solid rgb(55, 83, 97);
+        background: transparent;
+        color: aqua;
+      }
+
+      input[type="text"]:focus,
+      input[type="password"]:focus,
+      input[type="number"]:focus {
+        border: solid 1px rgb(64, 175, 175);
+        outline: none;
+      }
+      input[type="checkbox"] {
+        width: 1.2em;
+        height: 1.2em;
+        border: 5em solid rgb(55, 83, 97);
+        border-radius: 2px;
+        background-color: black;
+        background: transparent;
+      }
+      .checkbox {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      h1 {
+        color: aqua;
+        margin-bottom: 3vh;
+      }
+      button {
+        padding: 2vh 15vh;
+        margin: 1vh;
+        border-radius: 5vh;
+        background-color: aqua;
+        font-weight: 800;
+        font-size: medium;
+        cursor: pointer;
+        border: none;
+      }
+      button:hover {
+        background-color: rgb(3, 211, 211);
+      }
+      button:active {
+        background-color: rgb(9, 100, 100);
+      }
+      .checkbox label {
+        font-size: small;
+        left: auto;
+      }
+      span {
+        color: red;
+      }
+      input:-webkit-autofill,
+      input:-webkit-autofill:hover,
+      input:-webkit-autofill:focus,
+      input:-webkit-autofill:active {
+        -webkit-box-shadow: 0 0 0 30px #1f293a inset !important;
+        -webkit-text-fill-color: aqua !important;
+      }
+    </style>
+  </head>
+
+  <body>
+    <form
+      action="#"
+      method="post"
+      name="myform"
+      onsubmit="return validateform()"
+    >
+      <div class="container">
+        <h1>Entry Form</h1>
+        <label>First Name</label>
+        <input type="text" id="fname" />
+        <span class="formerror"></span>
+        <label>Last Name</label>
+        <input type="text" id="lname" />
+        <span class="formerror"></span>
+        <label>Phone Number</label>
+        <input type="number" id="number" />
+        <span class="formerror"></span>
+        <label>Email</label>
+        <input type="text" id="email" />
+        <span class="formerror"></span>
+        <label>Password</label>
+        <input type="password" id="pass" />
+        <span class="formerror"></span>
+        <div class="checkbox">
+          <input type="checkbox" id="checkbox" required/>
+          <label>I agree to the given Terms and Conditions.</label>
+        </div>
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+  </body>
+  <script>
+
+    function validateform() {
+      var name = document.getElementById("fname");
+      if (name.value.trim().length == 0) {
+        document.getElementsByClassName("formerror")[0].innerHTML = "Name can not be empty";
+
+        return false;
+      }
+      var lname = document.getElementById("lname");
+      if (lname.value.trim().length == 0) {
+        document.getElementsByClassName("formerror")[1].innerHTML = "Name can not be empty";
+        return false;
+      }
+      var number = document.getElementById("number");
+      if (number.value.trim().length != 10) {
+        document.getElementsByClassName("formerror")[2].innerHTML = "Please enter a valid phone number";
+        return false;
+      }
+      var pass = document.getElementById("pass");
+      if (pass.value.trim().length < 8) {
+        document.getElementsByClassName("formerror")[4].innerHTML = "Enter a valid password";
+        return false;
+      }
+      var email = document.getElementById("email");
+      var mailformat = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/;
+      if (!email.value.match(mailformat)) {
+       {
+        document.getElementsByClassName("formerror")[3].innerHTML = "Enter valid email address";
+        return false;
+      }
+
+    }
+    else {
+      return true;
+    }
+  }
+  </script>
+</html>
